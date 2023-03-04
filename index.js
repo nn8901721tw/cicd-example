@@ -1,21 +1,22 @@
 const http = require('http')
 const query_string = require('querystring')
 const multiplication = require('./multiplication')
+const a = 1
 
-const demo_server = http.createServer(function(request, response) {
+const demo_server = http.createServer(function (request, response) {
   console.dir(request.param)
   if (request.method == 'POST') {
     console.log('POST')
     var request_body = ''
-    request.on('data', function(data) {
+    request.on('data', function (data) {
       request_body += data
     })
 
-    request.on('end', function() {
+    request.on('end', function () {
       const post_request = query_string.parse(request_body)
       const input_numbers = post_request.numbers
-     const product = multiplication.multiply(input_numbers)
-      response.writeHead(200, {'Content-Type': 'text/html'})
+      const product = multiplication.multiply(input_numbers)
+      response.writeHead(200, { 'Content-Type': 'text/html' })
       response.end('Result: ' + product)
     })
   } else {
@@ -28,7 +29,7 @@ const demo_server = http.createServer(function(request, response) {
                     </form>
                 </body>
             </html>`
-    response.writeHead(200, {'Content-Type': 'text/html'})
+    response.writeHead(200, { 'Content-Type': 'text/html' })
     response.end(html)
   }
 })
