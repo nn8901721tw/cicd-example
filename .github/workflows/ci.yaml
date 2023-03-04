@@ -37,7 +37,7 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - run: npm install
       - run: npm test
- Push-To-Registry:
+  Push-To-Registry:
     name: Push Docker image to Docker Hub
     runs-on: ubuntu-latest
     needs: [CI]
@@ -63,4 +63,4 @@ jobs:
         with:
           context: .
           push: true
-          tags: nucktwillieren/cicd-example:latest
+          tags: nn8901721tw/cicd-example:latest
